@@ -80,24 +80,6 @@ import injectionKeys from "../injectionKeys";
 
 const ss = inject(injectionKeys.core);
 const instancePath = inject(injectionKeys.instancePath);
-// const disablingIds = ["laser-toggle"]
-// var buttonsDisabled = false
-
-
-// function toggleDisableInputs(event: Event, value: String) {
-// 	const targetEl: HTMLElement = (event.target as HTMLElement).closest(
-// 		"[data-streamsync-id]"
-// 	);
-// 	var targetComponent = ss.getComponentById(targetEl.dataset.streamsyncId)
-// 	var targetDescription = targetComponent.content["disabler"]
-
-// 	console.log("disabler:" + targetDescription)
-
-// 	if (targetDescription != null && targetDescription == "yes") {
-// 		console.log('disabling buttons')
-// 		buttonsDisabled = (value == "yes") ? true : false
-// 	}
-// }
 
 function getParentTabId(target: HTMLElement): string {
 	const parentTab: HTMLElement = (target as HTMLElement).closest(
@@ -143,7 +125,6 @@ function captureClick(event: Event) {
 
     event.stopPropagation()
     if (!isCorrectInputType(event, ["BUTTON"])) { return }
-	// if (buttonsDisabled) { return }
 
 	const {parentComponentId, targetComponentId} = getIdentifier(event)
 	const customEvent = new CustomEvent("click", {
@@ -193,8 +174,6 @@ function captureChange(event: Event) {
 			},
 		},
 	});
-
-	// toggleDisableInputs(event, inputValue)
 	ss.forwardEvent(customEvent, instancePath, true)
 }
 
