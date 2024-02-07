@@ -5,7 +5,7 @@
     :class="{ snapMode: fields.snapMode.value == 'yes' }"
 	v-on:click.capture="captureClick" 
     >
-		<h2 v-if="fields.title.value">{{ fields.title.value }} CUSTOM SECTION</h2>
+		<h2 v-if="fields.title.value">{{ fields.title.value }}</h2>
 		<div data-streamsync-container
 		v-on:input.capture="captureInput"
 		v-on:change.capture="captureChange"
@@ -43,7 +43,7 @@ export default {
 		fields: {
 			title: {
 				name: "Title",
-				init: "Section Title",
+				init: "Custom Section Title",
 				desc: "Leave blank to hide.",
 				type: FieldType.Text,
 			},
