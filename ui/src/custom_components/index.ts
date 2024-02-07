@@ -1,8 +1,5 @@
 
 // Import the templates
-
-import BubbleMessage from './BubbleMessage.vue';
-import BubbleMessageAdvanced from './BubbleMessageAdvanced.vue';
 import CustomSection from './CustomCoreSection.vue';
 import CustomButton from './CustomCoreButton.vue';    
 import CustomDropDown from './input/CoreDropdownInput.vue';
@@ -16,8 +13,6 @@ import CustomMetric from './CustomMetric.vue';
 // Export an object with the ids and the templates as default
 
 export default {
-    "bubblemessage": BubbleMessage,
-    "bubblemessageadvanced": BubbleMessageAdvanced,
     "customsection": CustomSection,
     "custombutton": CustomButton,
     "customdropdown": CustomDropDown,
