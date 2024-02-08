@@ -15,13 +15,27 @@ def _update_message(state):
 
 def decrement(state):
     state["counter"] -= 1
+    state["regen"]["driver_current"] -= 50
     _update_message(state)
 
 def increment(state):
     state["counter"] += 1
+    state["regen"]["driver_current"] += 50
     # Shows in the log when the event handler is run
     print(f"The counter has been incremented.")
     _update_message(state)
+
+def change_handler(state, payload):
+    print("change handler")
+    print(payload)
+    if (payload["control"] == "laser-toggle"):
+        state["is_disabled"] = payload["value"]
+
+def click_handler(state, payload):
+    if (state["is_disabled"] == "yes"):
+        return
+    print("click_handler")
+    print(payload)
     
 # Initialise the state
 
@@ -35,6 +49,10 @@ initial_state = ss.init_state({
     "_my_private_element": 1337,
     "message": None,
     "counter": 26,
+    "regen": {
+        "driver_current": 99,
+    },
+    "is_disabled": "no",
 })
 
 _update_message(initial_state)
