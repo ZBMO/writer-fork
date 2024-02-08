@@ -127,9 +127,11 @@ function captureClick(event: Event) {
     if (!isCorrectInputType(event, ["BUTTON"])) { return }
 
 	const {parentComponentId, targetComponentId} = getIdentifier(event)
+	const compositeId = parentComponentId + "_" +  targetComponentId
 	const customEvent = new CustomEvent("click", {
 		detail: {
 			payload: {
+				id: compositeId,
 				tab: parentComponentId,
 				control: targetComponentId,
 			},
@@ -164,10 +166,12 @@ function captureChange(event: Event) {
     if (!isCorrectInputType(event, ["SELECT", "INPUT"])) { return }
 
 	const {parentComponentId, targetComponentId} = getIdentifier(event)
+	const compositeId = parentComponentId + "_" + targetComponentId
 	const inputValue = (<HTMLInputElement>event.target).value
 	const customEvent = new CustomEvent("change", {
 		detail: {
 			payload: {
+				id: compositeId,
 				tab: parentComponentId,
 				control: targetComponentId,
 				value: inputValue
