@@ -34,7 +34,7 @@ export default {
 		fields: {
 			label: {
 				name: "Label",
-				init: "Input Label",
+				init: "Text Input",
 				type: FieldType.Text,
 			},
 			placeholder: {
