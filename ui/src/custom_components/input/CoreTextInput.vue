@@ -51,6 +51,11 @@ export default {
 				},
 				category: FieldCategory.Style,
 			},
+			customId: {
+				name: "CustomId",
+				init: "Input CustomId",
+				type: FieldType.Text,
+			},
 			cssClasses
 		},
 		events: {
