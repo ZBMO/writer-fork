@@ -34,7 +34,7 @@ export default {
 		fields: {
 			label: {
 				name: "Label",
-				init: "Input Label",
+				init: "Text Input",
 				type: FieldType.Text,
 			},
 			placeholder: {
@@ -50,6 +50,11 @@ export default {
 					yes: "Yes"
 				},
 				category: FieldCategory.Style,
+			},
+			customId: {
+				name: "CustomId",
+				init: "Input CustomId",
+				type: FieldType.Text,
 			},
 			cssClasses
 		},

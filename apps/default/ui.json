@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "streamsync_version": "0.1.4"
+        "streamsync_version": "0.3.0"
     },
     "components": {
         "root": {
@@ -42,7 +42,6 @@
             "type": "section",
             "content": {
                 "title": "",
-                "snapMode": "no",
                 "containerShadow": "0px 4px 11px -12px #000000"
             },
             "parentId": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
@@ -82,7 +81,7 @@
             "id": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
             "type": "horizontalstack",
             "content": {
-                "alignment": "left"
+                "contentHAlign": "start"
             },
             "parentId": "f3777e75-3659-4d44-8ef7-aeec0d06855b",
             "position": 0,
@@ -117,8 +116,8 @@
             "content": {
                 "title": "",
                 "width": "1",
-                "verticalAlignment": "center",
-                "horizontalAlignment": "center"
+                "contentHAlign": "center",
+                "contentVAlign": "center"
             },
             "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
             "position": 2,
@@ -144,6 +143,97 @@
             "position": 1,
             "handlers": {},
             "visible": true
+        },
+        "4912s9tgs5qqhyp6": {
+            "id": "4912s9tgs5qqhyp6",
+            "type": "custom_customsection",
+            "content": {
+                "title": "Section Title",
+                "snapMode": "no"
+            },
+            "parentId": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
+            "position": 2,
+            "handlers": {
+                "change": "change_handler",
+                "click": "click_handler"
+            },
+            "visible": true
+        },
+        "7h3ocn6khhf5xsjd": {
+            "id": "7h3ocn6khhf5xsjd",
+            "type": "custom_customtabs",
+            "content": {},
+            "parentId": "4912s9tgs5qqhyp6",
+            "position": 0,
+            "handlers": {},
+            "visible": true
+        },
+        "evuwbyvr4gn97c3c": {
+            "id": "evuwbyvr4gn97c3c",
+            "type": "custom_customtab",
+            "content": {
+                "name": "Tab Name",
+                "customId": "regen"
+            },
+            "parentId": "7h3ocn6khhf5xsjd",
+            "position": 0,
+            "handlers": {},
+            "visible": true
+        },
+        "9c7slob9kfw9yjee": {
+            "id": "9c7slob9kfw9yjee",
+            "type": "custom_customdropdown",
+            "content": {
+                "label": "ON / OFF",
+                "customId": "laser-toggle",
+                "options": "{\n  \"yes\": \"ON\",\n  \"no\": \"OFF\"\n}",
+                "description": "disable",
+                "disabler": "no"
+            },
+            "parentId": "evuwbyvr4gn97c3c",
+            "position": 0,
+            "handlers": {},
+            "visible": true
+        },
+        "fahn0gocjkvix9kt": {
+            "id": "fahn0gocjkvix9kt",
+            "type": "custom_custombutton",
+            "content": {
+                "text": "Button Text",
+                "customId": "chill_button",
+                "isDisabled": "@{is_disabled}"
+            },
+            "parentId": "evuwbyvr4gn97c3c",
+            "position": 1,
+            "handlers": {},
+            "visible": true
+        },
+        "ek6icljwo21hkgdo": {
+            "id": "ek6icljwo21hkgdo",
+            "type": "custom_customtextinput",
+            "content": {
+                "label": "Text Input"
+            },
+            "parentId": "evuwbyvr4gn97c3c",
+            "position": 2,
+            "handlers": {},
+            "visible": true
+        },
+        "lj684wjua252sa4v": {
+            "id": "lj684wjua252sa4v",
+            "type": "custom_customnumberinput",
+            "content": {
+                "label": "Number Input",
+                "customId": "Input CustomId"
+            },
+            "parentId": "evuwbyvr4gn97c3c",
+            "position": 3,
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "ss-number-change",
+                "stateRef": "regen.driver_current"
+            }
         }
     }
 }

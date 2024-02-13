@@ -80,37 +80,28 @@ import injectionKeys from "../injectionKeys";
 
 const ss = inject(injectionKeys.core);
 const instancePath = inject(injectionKeys.instancePath);
-const disablingIds = ["laser-toggle"]
-var buttonsDisabled = false
-
-
-function toggleDisableInputs(id: string, value: String) {
-	if (disablingIds.includes(id)) {
-		buttonsDisabled = (value == "yes") ? true : false
-	}
-}
 
 function getParentTabId(target: HTMLElement): string {
-	const targetEl: HTMLElement = (target as HTMLElement).closest(
+	const parentTab: HTMLElement = (target as HTMLElement).closest(
 		".CoreTab"
 	);
-	var tab = ss.getComponentById(targetEl.dataset.streamsyncId)
+	if (parentTab == null) return null
+	
+	var tab = ss.getComponentById(parentTab.dataset.streamsyncId)
 	var customId = tab.content["customId"]
 	return customId
 }
 
-function getIdentifier(event: Event): string {
+function getIdentifier(event: Event): {"parentComponentId", "targetComponentId"} {
 	const targetEl: HTMLElement = (event.target as HTMLElement).closest(
 		"[data-streamsync-id]"
 	);
-	var component = ss.getComponentById(targetEl.dataset.streamsyncId)
-	var targetId = component.content["customId"]
-	var parentId = getParentTabId(targetEl)
-	var compositeId = parentId + targetId
+	var targetComponent = ss.getComponentById(targetEl.dataset.streamsyncId)
+	var targetComponentId = targetComponent.content["customId"]
+	
+	var parentComponentId = getParentTabId(targetEl)
 
-	var defaultId = targetEl.dataset.streamsyncId
-
-	return (compositeId != "") ? compositeId : defaultId
+	return {parentComponentId: parentComponentId, targetComponentId: targetComponentId}
 }
 
 function isCorrectInputType(event: Event, expectedTypes): boolean {
@@ -128,21 +119,21 @@ function ignoreTabClick(event) {
 }
 
 function captureClick(event: Event) {
-	console.log('captureClick: ')
-	console.log(event)
 	if (ignoreTabClick(event)) {
 		return
 	}
 
     event.stopPropagation()
     if (!isCorrectInputType(event, ["BUTTON"])) { return }
-	if (buttonsDisabled) { return }
 
-	const customId = getIdentifier(event)
+	const {parentComponentId, targetComponentId} = getIdentifier(event)
+	const compositeId = parentComponentId + "_" +  targetComponentId
 	const customEvent = new CustomEvent("click", {
 		detail: {
 			payload: {
-				id: customId,
+				id: compositeId,
+				tab: parentComponentId,
+				control: targetComponentId,
 			},
 		},
 	});
@@ -150,26 +141,22 @@ function captureClick(event: Event) {
 }
 
 function captureInput(event: Event) {
-	console.log('captureInput: ')
-	console.log(event)
-    event.stopPropagation()
-    if (!isCorrectInputType(event, ["INPUT"])) { return }
+    // event.stopPropagation()
+    // if (!isCorrectInputType(event, ["INPUT"])) { return }
 
-	const componentId = getIdentifier(event)
-	const inputValue = (<HTMLInputElement>event.target).value
+	// const componentId = getIdentifier(event)
+	// const inputValue = (<HTMLInputElement>event.target).value
 
 	
-	const customEvent = new CustomEvent("input", {
-		detail: {
-			payload: {
-				id: componentId,
-				value: inputValue
-			},
-		},
-	});
-
-
-	ss.forwardEvent(customEvent, instancePath, true)
+	// const customEvent = new CustomEvent("input", {
+	// 	detail: {
+	// 		payload: {
+	// 			id: componentId,
+	// 			value: inputValue
+	// 		},
+	// 	},
+	// });
+	// ss.forwardEvent(customEvent, instancePath, true)
 }
 
 function captureChange(event: Event) {
@@ -178,19 +165,19 @@ function captureChange(event: Event) {
 	event.stopPropagation()
     if (!isCorrectInputType(event, ["SELECT", "INPUT"])) { return }
 
-	const componentId = getIdentifier(event)
+	const {parentComponentId, targetComponentId} = getIdentifier(event)
+	const compositeId = parentComponentId + "_" + targetComponentId
 	const inputValue = (<HTMLInputElement>event.target).value
 	const customEvent = new CustomEvent("change", {
 		detail: {
 			payload: {
-				id: componentId,
+				id: compositeId,
+				tab: parentComponentId,
+				control: targetComponentId,
 				value: inputValue
 			},
 		},
 	});
-
-
-	toggleDisableInputs(componentId, inputValue)
 	ss.forwardEvent(customEvent, instancePath, true)
 }
 
