@@ -1,14 +1,16 @@
 <template>
 	<div class="CoreMetric" :style="rootStyle">
 		<div class="name">{{ fields.name.value }}</div>
-		<div :style="{display: 'flex', 'flex-direction': 'row'}">
-			<div class="note" v-if="noteWithoutPrefix">{{ noteWithoutPrefix }}</div>
-			<div class="icon">
-				<i class="ColorIcon"
-						v-if="sentiment != 'neutral'"
-						:class="displayIcon"
-						:style="{fontSize: `${fields.size.value}px`, color: fields.color.value}"
-					></i>
+		<div class="secondAndThirdColumns">
+			<div class="statusAndIcon">
+				<div class="note">{{ noteWithoutPrefix }}</div>
+				<div class="icon">
+					<i class="ColorIcon"
+							v-if="sentiment != 'neutral'"
+							:class="displayIcon"
+							:style="{fontSize: `${fields.size.value}px`, color: fields.color.value}"
+						></i>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -132,11 +134,27 @@ const rootStyle = computed(() => {
 
 .CoreMetric {
 	padding-left: 16px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
 	gap: 8px;
 	border-color: var(--messageActiveSentimentColor);
+	min-height: 1.4rem;
+}
+
+.statusAndIcon {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+}
+
+.secondAndThirdColumns {
+	grid-column-start: 2;
+  	grid-column-end: -1;
 }
 
 .ColorIcon {
@@ -147,7 +165,8 @@ const rootStyle = computed(() => {
 	text-overflow: ellipsis;
 	font-size: 0.9rem;
 	color: black;
-	
+	grid-column-start: 1;
+  	grid-column-end: 2;
 }
 
 .note {
@@ -155,5 +174,12 @@ const rootStyle = computed(() => {
 	color: black;
 	filter: brightness(0.9);
 	margin-right: .2rem;
+	grid-column-start: 1;
+  	grid-column-end: 5;
+}
+
+.icon {
+	grid-column-start: 5;
+  	grid-column-end: -1;
 }
 </style>
