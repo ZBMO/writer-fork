@@ -110,21 +110,31 @@ function isCorrectInputType(event: Event, expectedTypes): boolean {
 }
 
 function ignoreTabClick(event) {
-	const targetEl: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-streamsync-id]"
-	);
-	var component = ss.getComponentById(targetEl.dataset.streamsyncId)
+	const targetEl: HTMLElement = event.target as HTMLElement
+	const closesetSSElement: HTMLElement = targetEl.closest("[data-streamsync-id]")
 
-	return component["type"].includes("tab")
+	var component = ss.getComponentById(closesetSSElement.dataset.streamsyncId)
+
+	const ssComponentIsATab = component["type"].includes("tab")
+	const targetElementIsAButton = targetEl.nodeName == "BUTTON"
+
+	return ssComponentIsATab && targetElementIsAButton
+}
+
+function isDisabled(event) {
+	const target: HTMLElement = (event.target as HTMLElement)
+	const isDisabled = target.attributes['aria-disabled'].value
+	return isDisabled == "true"
 }
 
 function captureClick(event: Event) {
 	if (ignoreTabClick(event)) {
 		return
 	}
-
+	
     event.stopPropagation()
     if (!isCorrectInputType(event, ["BUTTON"])) { return }
+	if (isDisabled(event)) { return }
 
 	const {parentComponentId, targetComponentId} = getIdentifier(event)
 	const compositeId = parentComponentId + "_" +  targetComponentId
@@ -138,25 +148,6 @@ function captureClick(event: Event) {
 		},
 	});
 	ss.forwardEvent(customEvent, instancePath, true)
-}
-
-function captureInput(event: Event) {
-    // event.stopPropagation()
-    // if (!isCorrectInputType(event, ["INPUT"])) { return }
-
-	// const componentId = getIdentifier(event)
-	// const inputValue = (<HTMLInputElement>event.target).value
-
-	
-	// const customEvent = new CustomEvent("input", {
-	// 	detail: {
-	// 		payload: {
-	// 			id: componentId,
-	// 			value: inputValue
-	// 		},
-	// 	},
-	// });
-	// ss.forwardEvent(customEvent, instancePath, true)
 }
 
 function captureChange(event: Event) {
