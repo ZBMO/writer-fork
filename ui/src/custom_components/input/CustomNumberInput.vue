@@ -11,6 +11,7 @@
 			:min="fields.minValue.value !== null ? fields.minValue.value : undefined"
 			:max="fields.maxValue.value !== null ? fields.maxValue.value : undefined"
 			:step="fields.valueStep.value !== null ? fields.valueStep.value : undefined"
+			:disabled="isDisabled"
 		/>
 	</div>
 </template>
@@ -64,6 +65,16 @@ export default {
 				type: FieldType.Number,
 				default: "1"
 			},
+			isDisabled: {
+				name: "Disabled",
+				default: "no",
+				type: FieldType.Text,
+				options: {
+					yes: "Yes",
+					no: "No",
+				},
+				desc: "Disables all event handlers."
+			},
 			cssClasses
 		},
 		events: {
@@ -82,7 +93,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { inject, ref } from "vue";
+import { inject, ref, watch } from "vue";
 import injectionKeys from "../../injectionKeys";
 import { useFormValueBroker } from "../../renderer/useFormValueBroker";
 
@@ -91,8 +102,15 @@ const rootEl = ref(null);
 const inputEl = ref(null);
 const ss = inject(injectionKeys.core);
 const instancePath = inject(injectionKeys.instancePath);
+const isDisabled = inject(injectionKeys.isDisabled);
 
 const { formValue, handleInput } = useFormValueBroker(ss, instancePath, rootEl);
+
+watch(fields.isDisabled, (newFieldValue: string) => {
+	isDisabled.value = newFieldValue == "yes";
+}, {
+	immediate: true
+});
 
 function enforceLimitsAndReturnValue() {
 	if (inputEl.value.value == "") return null;
