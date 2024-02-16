@@ -5,6 +5,7 @@
 			<select
 				:value="formValue"
 				v-on:input="($event) => handleInput(($event.target as HTMLInputElement).value, 'ss-option-change')"
+				:disabled="isDisabled"
 			>
 				<option
 					v-for="(option, optionKey) in fields.options.value"
@@ -56,6 +57,16 @@ export default {
 				type: FieldType.KeyValue,
 				default: JSON.stringify(defaultOptions, null, 2),
 			},
+			isDisabled: {
+				name: "Disabled",
+				default: "no",
+				type: FieldType.Text,
+				options: {
+					yes: "Yes",
+					no: "No",
+				},
+				desc: "Disables all event handlers."
+			},
 			cssClasses
 		},
 		events: {
@@ -70,6 +81,7 @@ export default {
 </script>
 
 <script setup lang="ts">
+import {  watch } from "vue";
 import injectionKeys from "../../injectionKeys";
 import { useFormValueBroker } from "../../renderer/useFormValueBroker";
 
@@ -77,8 +89,15 @@ const fields = inject(injectionKeys.evaluatedFields);
 const rootEl: Ref<HTMLElement> = ref(null);
 const ss = inject(injectionKeys.core);
 const instancePath = inject(injectionKeys.instancePath);
+const isDisabled = inject(injectionKeys.isDisabled);
 
 const { formValue, handleInput } = useFormValueBroker(ss, instancePath, rootEl);
+
+watch(fields.isDisabled, (newFieldValue: string) => {
+	isDisabled.value = newFieldValue == "yes";
+}, {
+	immediate: true
+});
 </script>
 
 <style scoped>
