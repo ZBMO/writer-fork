@@ -143,7 +143,7 @@ const rootStyle = computed(() => {
 .CoreMetric {
 	padding-left: 16px;
 	display: grid;
-	grid-template-columns: [first] 18fr [second] 1fr [third] 4fr [end];
+	grid-template-columns: [first] 16fr [second] 1fr [third] 5fr [end];
 	grid-template-rows: 1fr;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
