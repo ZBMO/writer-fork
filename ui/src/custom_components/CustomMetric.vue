@@ -76,6 +76,18 @@ export default {
 				type: FieldType.Color,
 				category: FieldCategory.Style,
 			},
+			positiveIcon: {
+				name: "Positive Icon",
+				default: "check",
+				type: FieldType.Text,
+				category: FieldCategory.Style,
+			},
+			negativeIcon: {
+				name: "Negative Icon",
+				default: "close",
+				type: FieldType.Text,
+				category: FieldCategory.Style,
+			},
 			cssClasses,
 		},
 		previewField: "name",
@@ -102,9 +114,9 @@ const sentiment = computed(() => {
 const displayIcon = computed(() => {
 	const sent = sentiment.value
 	if (sent == "positive") {
-		return [`ri-check-line`]
+		return ["ri-" + fields.positiveIcon.value + "-line"]
 	} else {
-		return ['ri-close-line']
+		return ["ri-" + fields.negativeIcon.value + "-line"]
 	}
 });
 
