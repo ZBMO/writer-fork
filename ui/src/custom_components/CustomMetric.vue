@@ -74,13 +74,13 @@ export default {
 			},
 			positiveIcon: {
 				name: "Positive Icon",
-				default: "check",
+				default: "check-line",
 				type: FieldType.Text,
 				category: FieldCategory.Style,
 			},
 			negativeIcon: {
 				name: "Negative Icon",
-				default: "close",
+				default: "close-line",
 				type: FieldType.Text,
 				category: FieldCategory.Style,
 			},
@@ -110,9 +110,9 @@ const sentiment = computed(() => {
 const displayIcon = computed(() => {
 	const sent = sentiment.value
 	if (sent == "positive") {
-		return ["ri-" + fields.positiveIcon.value + "-line"]
+		return ["ri-" + fields.positiveIcon.value]
 	} else {
-		return ["ri-" + fields.negativeIcon.value + "-line"]
+		return ["ri-" + fields.negativeIcon.value]
 	}
 });
 
