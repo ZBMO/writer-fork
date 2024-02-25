@@ -109,7 +109,7 @@ function isCorrectInputType(event: Event, expectedTypes): boolean {
     return expectedTypes.includes(type)
 }
 
-function ignoreTabClick(event) {
+function isTabClick(event) {
 	const targetEl: HTMLElement = event.target as HTMLElement
 	const closesetSSElement: HTMLElement = targetEl.closest("[data-streamsync-id]")
 
@@ -127,8 +127,17 @@ function isDisabled(event) {
 	return isDisabled == "true"
 }
 
+function isFileInput(event: Event) {
+	const targetEl: HTMLElement = event.target as HTMLElement
+	const closesetSSElement: HTMLElement = targetEl.closest("[data-streamsync-id]")
+
+	var component = ss.getComponentById(closesetSSElement.dataset.streamsyncId)
+
+	return component.type == "fileinput"
+}
+
 function captureClick(event: Event) {
-	if (ignoreTabClick(event)) {
+	if (isTabClick(event)) {
 		return
 	}
 	
@@ -151,8 +160,10 @@ function captureClick(event: Event) {
 }
 
 function captureChange(event: Event) {
-	console.log('captureChange: ')
-	console.log(event)
+	if (isFileInput(event)) {
+		return
+	}
+
 	event.stopPropagation()
     if (!isCorrectInputType(event, ["SELECT", "INPUT"])) { return }
 
