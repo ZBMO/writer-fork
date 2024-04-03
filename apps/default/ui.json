@@ -229,11 +229,11 @@
             "parentId": "evuwbyvr4gn97c3c",
             "position": 3,
             "handlers": {},
-            "visible": true,
             "binding": {
                 "eventType": "ss-number-change",
                 "stateRef": "regen.driver_current"
-            }
+            },
+            "visible": true
         }
     }
 }
