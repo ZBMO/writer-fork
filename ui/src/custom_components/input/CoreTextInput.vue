@@ -1,5 +1,5 @@
 <template>
-	<div class="CoreTextInput" ref="rootEl">
+	<div class="CoreTextInput" ref="rootEl" :title="fields.toolTip.value">
 		<label>{{ fields.label.value }}</label>
 		<input
 			:type="fields.passwordMode.value == 'yes' ? 'password' : 'text'"
@@ -55,6 +55,11 @@ export default {
 			customId: {
 				name: "CustomId",
 				init: "Input CustomId",
+				type: FieldType.Text,
+			},
+			toolTip: {
+				name: "Tooltip",
+				init: "",
 				type: FieldType.Text,
 			},
 			isDisabled: {

@@ -1,5 +1,5 @@
 <template>
-	<div class="CoreNumberInput" ref="rootEl">
+	<div class="CoreNumberInput" ref="rootEl" :title="fields.toolTip.value">
 		<label>{{ fields.label.value }}</label>
 		<input
 			type="number"
@@ -58,6 +58,11 @@ export default {
 			customId: {
 				name: "CustomId",
 				init: "Input CustomId",
+				type: FieldType.Text,
+			},
+			toolTip: {
+				name: "Tooltip",
+				init: "",
 				type: FieldType.Text,
 			},
 			valueStep: {

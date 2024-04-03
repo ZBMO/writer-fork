@@ -1,5 +1,5 @@
 <template>
-	<div class="CoreMetric" :style="rootStyle">
+	<div class="CoreMetric" :style="rootStyle" :title="fields.toolTip.value">
 		<div class="name">{{ fields.name.value }}</div>
 		<div class="icon">
 				<i class="ColorIcon"
@@ -32,6 +32,11 @@ export default {
 			name: {
 				name: "Name",
 				default: "Metric",
+				type: FieldType.Text,
+			},
+			toolTip: {
+				name: "Tooltip",
+				init: "",
 				type: FieldType.Text,
 			},
 			metricvalue: {

@@ -1,5 +1,5 @@
 <template>
-	<div class="CoreDropdownInput" ref="rootEl">
+	<div class="CoreDropdownInput" ref="rootEl" :title="fields.toolTip.value">
 		<label class="mainLabel">{{ fields.label.value }}</label>
 		<div class="selectContainer">
 			<select
@@ -49,6 +49,11 @@ export default {
 			customId: {
 				name: "CustomId",
 				init: "Dropdown CustomId",
+				type: FieldType.Text,
+			},
+			toolTip: {
+				name: "Tooltip",
+				init: "",
 				type: FieldType.Text,
 			},
 			options: {

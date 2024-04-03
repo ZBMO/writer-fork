@@ -1,5 +1,5 @@
 <template>
-	<button class="CoreButton" :aria-disabled="isDisabled" ref="rootEl" v-on:click="handleClick">
+	<button class="CoreButton" :aria-disabled="isDisabled" ref="rootEl" v-on:click="handleClick" :title="fields.toolTip.value">
 		<i
 			v-if="fields.icon.value"
 			:class="[`ri-${fields.icon.value}-line`, `ri-${fields.icon.value}`]"
@@ -66,6 +66,11 @@ export default {
 				},
 				desc: "Disables all event handlers."
 			},
+			toolTip: {
+				name: "Tooltip",
+				init: "",
+				type: FieldType.Text,
+			},
 			buttonColor,
 			buttonTextColor,
 			icon: {
@@ -100,6 +105,12 @@ watch(fields.isDisabled, (newFieldValue: string) => {
 function handleClick(ev: MouseEvent) {
 	const ssEv = getClick(ev);
 	rootEl.value.dispatchEvent(ssEv);
+}
+
+function getToolTip() {
+	if (fields.toolTipEnabled) {
+		return fields.toolTip
+	}
 }
 
 </script>
