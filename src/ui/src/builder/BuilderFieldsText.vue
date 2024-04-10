@@ -10,7 +10,7 @@
 				class="content"
 				:value="component.content[fieldKey]"
 				:placeholder="templateField?.default"
-				:options="templateField.options"
+				:options="options"
 				@input="handleInput"
 			/>
 		</template>
@@ -32,7 +32,6 @@ import { Component, FieldControl } from "../writerTypes";
 import { useComponentActions } from "./useComponentActions";
 import injectionKeys from "../injectionKeys";
 import BuilderTemplateInput from "./BuilderTemplateInput.vue";
-import Fuse from "fuse.js";
 
 const wf = inject(injectionKeys.core);
 const ssbm = inject(injectionKeys.builderManager);
