@@ -6,50 +6,21 @@
 				templateField.control == FieldControl.Text
 			"
 		>
-			<input
-				type="text"
-				:value="component.content[fieldKey]"
+			<BuilderTemplateInput
 				class="content"
-				autocorrect="off"
-				autocomplete="off"
-				spellcheck="false"
+				:value="component.content[fieldKey]"
 				:placeholder="templateField?.default"
-				:list="
-					templateField.options
-						? `list-${componentId}-${fieldKey}`
-						: undefined
-				"
+				:options="templateField.options"
 				@input="handleInput"
 			/>
-			<datalist
-				v-if="templateField.options"
-				:id="`list-${componentId}-${fieldKey}`"
-			>
-				<option
-					v-for="(option, optionKey) in options"
-					:key="optionKey"
-					:value="optionKey"
-				>
-					<template
-						v-if="option.toLowerCase() !== optionKey.toLowerCase()"
-					>
-						{{ option }}
-					</template>
-				</option>
-			</datalist>
 		</template>
 		<template v-else-if="templateField.control == FieldControl.Textarea">
-			<textarea
-				v-capture-tabs
+			<BuilderTemplateTextarea
 				class="content"
 				:value="component.content[fieldKey]"
 				:placeholder="templateField?.default"
-				autocorrect="off"
-				autocomplete="off"
-				spellcheck="false"
 				@input="handleInput"
-			>
-			</textarea>
+			/>
 		</template>
 	</div>
 </template>
@@ -59,6 +30,9 @@ import { toRefs, inject, computed } from "vue";
 import { Component, FieldControl } from "../writerTypes";
 import { useComponentActions } from "./useComponentActions";
 import injectionKeys from "../injectionKeys";
+import BuilderTemplateInput from "./BuilderTemplateInput.vue";
+import BuilderTemplateTextarea from "./BuilderTemplateTextarea.vue";
+import Fuse from 'fuse.js';
 
 const wf = inject(injectionKeys.core);
 const ssbm = inject(injectionKeys.builderManager);
@@ -93,14 +67,38 @@ const handleInput = (ev: Event) => {
 		(ev.target as HTMLInputElement).value,
 	);
 };
+
 </script>
+
+<style>
+.BuilderFieldsText .content {
+	padding: 16px 12px 12px 12px;
+	width: 100%;
+}
+</style>
 
 <style scoped>
 @import "./sharedStyles.css";
 
-.content {
-	padding: 16px 12px 12px 12px;
+.field-state-autocomplete {
+	position: absolute;
+	background-color: var(--builderBackgroundColor);
+	border: 1px solid var(--builderSeparatorColor);
+	border-radius: 4px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	max-height: 200px;
+	overflow-y: auto;
 	width: 100%;
+	z-index: 2;
+}
+
+.field-state-autocomplete-option {
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+.field-state-autocomplete-option:hover {
+	background-color: var(--builderSubtleHighlightColorSolid);
 }
 
 textarea {

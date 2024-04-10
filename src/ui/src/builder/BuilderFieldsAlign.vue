@@ -43,10 +43,9 @@
 				/>
 			</div>
 
-			<input
+			<BuilderTemplateInput
 				v-if="mode == 'css'"
 				ref="freehandInputEl"
-				type="text"
 				:value="component.content[fieldKey]"
 				@input="handleInputCss"
 			/>
@@ -70,6 +69,7 @@ import { Component } from "../writerTypes";
 import { useComponentActions } from "./useComponentActions";
 import injectionKeys from "../injectionKeys";
 import BuilderSelect from "./BuilderSelect.vue";
+import BuilderTemplateInput from "./BuilderTemplateInput.vue";
 
 const wf = inject(injectionKeys.core);
 const ssbm = inject(injectionKeys.builderManager);
