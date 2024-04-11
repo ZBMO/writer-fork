@@ -1,6 +1,16 @@
 import writer as wf
 
+<<<<<<< HEAD
 initial_state = wf.init_state({
+=======
+initial_state = ss.init_state({
+    "types": {
+        "none": None,
+        "string": "Hello, World!",
+        "integer": 42,
+        "float": 3.14,
+    },
+>>>>>>> 61f289e (tests: added e2e tests for builder state completion feature)
     "counter": 26,
     "list": ["A", "B", "C"],
     "dict": {"a": 1, "b": 2},
