@@ -8,7 +8,8 @@ import CustomDropDown from "./CustomDropDownInput.vue"
 import CustomTextInput from "./CustomTextInput.vue";
 import CustomNumberInput from "./CustomNumberInput.vue";
 import CustomTabs from "./CustomTabs.vue";
-import CustomTab from "./CustomTab.vue"
+import CustomTab from "./CustomTab.vue";
+import CustomMetric from "./CustomMetric.vue"
 
 // Export an object with the ids and the templates as default
 
@@ -21,5 +22,6 @@ export default {
 	customtextinput: CustomTextInput,
 	customnumberinput: CustomNumberInput,
 	customtabs: CustomTabs,
-	customtab: CustomTab
+	customtab: CustomTab,
+	customMetric: CustomMetric
 };

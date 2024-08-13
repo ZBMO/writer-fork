@@ -22,7 +22,7 @@ cssClasses,
 const description =
 	"A component that prominently displays a metric value and associated information.";
 export default {
-	streamsync: {
+	writer: {
 		name: "Metric",
 		description,
 		category: "Content",
@@ -43,7 +43,6 @@ export default {
 				type: FieldType.Number,
 				desc: `Icon size in px`,
 				category: FieldCategory.Style,
-				default: 20
 			},
 			color: {
 				name: "Icon color",
@@ -92,6 +91,7 @@ export default {
 import { computed, inject } from "vue";
 import injectionKeys from "../injectionKeys";
 const fields = inject(injectionKeys.evaluatedFields);
+
 const sentiment = computed(() => {
 	const note: string = fields.metricvalue.value;
 	if (!note) return "neutral";
@@ -103,6 +103,7 @@ const sentiment = computed(() => {
 	}
 	return "neutral";
 });
+
 const displayIcon = computed(() => {
 	const sent = sentiment.value
 	if (sent == "positive") {
@@ -111,6 +112,7 @@ const displayIcon = computed(() => {
 		return ["ri-" + fields.negativeIcon.value + "-line"]
 	}
 });
+
 const noteWithoutPrefix = computed(() => {
 	const note: string = fields.metricvalue.value;
 	if (!note) return;
