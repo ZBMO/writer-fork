@@ -77,29 +77,15 @@ const fields = inject(injectionKeys.evaluatedFields);
 const wf = inject(injectionKeys.core);
 const instancePath = inject(injectionKeys.instancePath);
 
-function captureClick(event: Event) {
-	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]"
+function getParentTabId(target: HTMLElement): string {
+	const parentTabElement: HTMLElement = (target as HTMLElement).closest(
+		".CoreTab"
 	);
-
-	// fail early and permit normal behavior for tabs
-	if (clickIsOnATab(event)) return
+	if (parentTabElement == null) return null
 	
-    event.stopPropagation()
-
-	if (clickIsNotOnAButton(targetElement)) { return }
-	// if (buttonsDisabled) { return }
-
-	const customId = getComponentCustomId(targetElement)
-	console.log('customId: ' + customId)
-	const customEvent = new CustomEvent("click", {
-		detail: {
-			payload: {
-				id: customId,
-			},
-		},
-	});
-	wf.forwardEvent(customEvent, instancePath, true)
+	var parentTabComponent = wf.getComponentById(parentTabElement.dataset.writerId)
+	var parentTabCustomId = parentTabComponent.content["customId"]
+	return parentTabCustomId
 }
 
 function getComponentCustomId(targetElement: HTMLElement): string {
@@ -108,6 +94,50 @@ function getComponentCustomId(targetElement: HTMLElement): string {
 	var defaultId = targetElement.dataset.writerId
 
 	return (customId != "") ? customId : defaultId
+}
+
+function getCustomIdentifiers(event: Event): String {
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]"
+	);
+
+	var targetComponentId = getComponentCustomId(targetElement)
+	var parentComponentId = getParentTabId(targetElement)
+
+	if (parentComponentId != null) {
+		return parentComponentId + "_" +  targetComponentId
+	} else {
+		return targetComponentId
+	}
+}
+
+function isDisabled(event) {
+	const target: HTMLElement = (event.target as HTMLElement)
+	const isDisabled = target.attributes['aria-disabled'].value
+	return isDisabled == "true"
+}
+
+function captureClick(event: Event) {
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]"
+	);
+
+	// fail early and permit normal behavior for tabs
+	if (clickIsOnATab(event)) return
+    event.stopPropagation()
+
+	if (clickIsNotOnAButton(targetElement)) { return }
+	if (isDisabled(event)) { return }
+
+	const compositeId = getCustomIdentifiers(event)
+	const customEvent = new CustomEvent("click", {
+		detail: {
+			payload: {
+				id: compositeId,
+			},
+		},
+	});
+	wf.forwardEvent(customEvent, instancePath, true)
 }
 
 function clickIsOnATab(event: Event): boolean {
@@ -125,7 +155,9 @@ function clickIsOnATab(event: Event): boolean {
 
 
 function clickIsNotOnAButton(targetElement: HTMLElement): boolean {
-    return "BUTTON" != targetElement.nodeName	
+	let res = "BUTTON" != targetElement.nodeName
+	console.log("click is not a button: " + res)
+    return res	
 }
 
 function elementIsNotThisType(event: Event, expectedTypes: Array<String>): boolean {
