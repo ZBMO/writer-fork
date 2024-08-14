@@ -23,5 +23,5 @@ export default {
 	customnumberinput: CustomNumberInput,
 	customtabs: CustomTabs,
 	customtab: CustomTab,
-	customMetric: CustomMetric
+	custommetric: CustomMetric
 };

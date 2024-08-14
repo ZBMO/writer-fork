@@ -14,332 +14,105 @@
             "handlers": {},
             "visible": true
         },
-        "c0f99a9e-5004-4e75-a6c6-36f17490b134": {
-            "id": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
+        "zvlc7r45bs2zqeoc": {
+            "id": "zvlc7r45bs2zqeoc",
             "type": "page",
-            "content": {
-                "pageMode": "compact"
-            },
+            "content": {},
             "isCodeManaged": false,
             "position": 0,
             "parentId": "root",
             "handlers": {},
             "visible": true
         },
-        "bebc5fe9-63a7-46a7-b0fa-62303555cfaf": {
-            "id": "bebc5fe9-63a7-46a7-b0fa-62303555cfaf",
-            "type": "header",
+        "78xr4sqqxffgfnez": {
+            "id": "78xr4sqqxffgfnez",
+            "type": "custom_custommetric",
             "content": {
-                "text": "@{my_app.title}"
+                "note": "+Pass",
+                "metricvalue": "+500",
+                "size": "50",
+                "positiveIcon": "check",
+                "negativeIcon": "close"
             },
             "isCodeManaged": false,
             "position": 0,
-            "parentId": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
+            "parentId": "zvlc7r45bs2zqeoc",
             "handlers": {},
             "visible": true
         },
-        "28d3885b-0fb8-4d41-97c6-978540015431": {
-            "id": "28d3885b-0fb8-4d41-97c6-978540015431",
-            "type": "section",
-            "content": {
-                "title": "",
-                "containerShadow": "0px 4px 11px -12px #000000"
-            },
-            "isCodeManaged": false,
-            "position": 1,
-            "parentId": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
-            "handlers": {},
-            "visible": true
-        },
-        "9556c0e3-8584-4ac9-903f-908a775a33ec": {
-            "id": "9556c0e3-8584-4ac9-903f-908a775a33ec",
-            "type": "button",
-            "content": {
-                "text": " Increment",
-                "icon": "arrow_upward"
-            },
-            "isCodeManaged": false,
-            "position": 1,
-            "parentId": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
-            "handlers": {
-                "click": "increment"
-            },
-            "visible": true
-        },
-        "51d1554e-1b88-461c-9353-1419cba0053a": {
-            "id": "51d1554e-1b88-461c-9353-1419cba0053a",
-            "type": "button",
-            "content": {
-                "text": "Decrement",
-                "icon": "arrow_downward"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
-            "handlers": {
-                "click": "decrement"
-            },
-            "visible": true
-        },
-        "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117": {
-            "id": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
-            "type": "horizontalstack",
-            "content": {
-                "contentHAlign": "center"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "f3777e75-3659-4d44-8ef7-aeec0d06855b",
-            "handlers": {},
-            "visible": true
-        },
-        "172a14df-f73a-44fa-8fb1-e8648e7d32d2": {
-            "id": "172a14df-f73a-44fa-8fb1-e8648e7d32d2",
-            "type": "metric",
-            "content": {
-                "metricValue": "@{counter}",
-                "note": "@{message}",
-                "name": "Counter"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
-            "handlers": {},
-            "visible": true
-        },
-        "d4a5e62c-c6fe-49c4-80d4-33862af8727d": {
-            "id": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
-            "type": "columns",
-            "content": {},
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "28d3885b-0fb8-4d41-97c6-978540015431",
-            "handlers": {},
-            "visible": true
-        },
-        "f3777e75-3659-4d44-8ef7-aeec0d06855b": {
-            "id": "f3777e75-3659-4d44-8ef7-aeec0d06855b",
-            "type": "column",
-            "content": {
-                "title": "",
-                "width": "1",
-                "contentHAlign": "center",
-                "contentVAlign": "center"
-            },
-            "isCodeManaged": false,
-            "position": 2,
-            "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
-            "handlers": {},
-            "visible": true
-        },
-        "c2519671-9ce7-44e7-ba4e-b0efda9cb20e": {
-            "id": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
-            "type": "column",
-            "content": {
-                "width": "1"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
-            "handlers": {},
-            "visible": true
-        },
-        "d4a71819-7444-4083-a1c7-7995452a7abf": {
-            "id": "d4a71819-7444-4083-a1c7-7995452a7abf",
-            "type": "separator",
-            "content": {},
-            "isCodeManaged": false,
-            "position": 1,
-            "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
-            "handlers": {},
-            "visible": true
-        },
-        "qivngolxdd888uk2": {
-            "id": "qivngolxdd888uk2",
+        "9whwtfc1wnw75cqp": {
+            "id": "9whwtfc1wnw75cqp",
             "type": "custom_customsection",
+            "parentId": "zvlc7r45bs2zqeoc",
             "content": {
-                "title": "cs 1"
+                "title": "Custom Section Title"
             },
-            "isCodeManaged": false,
-            "position": 2,
-            "parentId": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
-            "handlers": {
-                "click": "sectionClick"
-            },
-            "visible": true
-        },
-        "uai6zlf957badkm3": {
-            "id": "uai6zlf957badkm3",
-            "type": "custom_customtabs",
-            "content": {},
-            "isCodeManaged": false,
-            "position": 4,
-            "parentId": "tvab4gq5ndxkkwd4",
             "handlers": {},
-            "visible": true
-        },
-        "7gfj4me330ufnj6s": {
-            "id": "7gfj4me330ufnj6s",
-            "type": "custom_customtab",
-            "content": {
-                "name": "tab 1",
-                "customId": "tab1"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "uai6zlf957badkm3",
-            "handlers": {},
-            "visible": true
-        },
-        "wtprq4uudrd1pa0p": {
-            "id": "wtprq4uudrd1pa0p",
-            "type": "custom_customtab",
-            "content": {
-                "name": "tab 2",
-                "customId": "tab2id"
-            },
-            "isCodeManaged": false,
             "position": 1,
-            "parentId": "uai6zlf957badkm3",
-            "handlers": {},
             "visible": true
         },
-        "0qwcbqarmwxcx69l": {
-            "id": "0qwcbqarmwxcx69l",
-            "type": "custom_customtab",
-            "content": {
-                "name": "tab 3",
-                "customId": "Tab CustomId"
-            },
-            "isCodeManaged": false,
-            "position": 2,
-            "parentId": "uai6zlf957badkm3",
-            "handlers": {},
-            "visible": true
-        },
-        "fm3mujfc38w4vvzm": {
-            "id": "fm3mujfc38w4vvzm",
+        "ynjng96jymhhg438": {
+            "id": "ynjng96jymhhg438",
             "type": "columns",
+            "parentId": "9whwtfc1wnw75cqp",
             "content": {},
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "qivngolxdd888uk2",
             "handlers": {},
+            "position": 0,
             "visible": true
         },
-        "tvab4gq5ndxkkwd4": {
-            "id": "tvab4gq5ndxkkwd4",
+        "mbrlkh5ek5vo1ht6": {
+            "id": "mbrlkh5ek5vo1ht6",
             "type": "column",
+            "parentId": "ynjng96jymhhg438",
             "content": {
                 "width": "1"
             },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "fm3mujfc38w4vvzm",
             "handlers": {},
+            "position": 0,
             "visible": true
         },
-        "hwnbeaf5emjowpql": {
-            "id": "hwnbeaf5emjowpql",
+        "vwlbj4p88119zhue": {
+            "id": "vwlbj4p88119zhue",
             "type": "column",
+            "parentId": "ynjng96jymhhg438",
             "content": {
                 "width": "1"
             },
-            "isCodeManaged": false,
-            "position": 1,
-            "parentId": "fm3mujfc38w4vvzm",
             "handlers": {},
+            "position": 1,
             "visible": true
         },
-        "qgag5503dzlwwo2z": {
-            "id": "qgag5503dzlwwo2z",
-            "type": "custom_customdropdown",
+        "j2y4kdd2snj97ybx": {
+            "id": "j2y4kdd2snj97ybx",
+            "type": "custom_custommetric",
+            "parentId": "mbrlkh5ek5vo1ht6",
             "content": {
-                "label": "Input Label"
+                "metricvalue": "+Pass"
             },
-            "isCodeManaged": false,
+            "handlers": {},
             "position": 0,
-            "parentId": "tvab4gq5ndxkkwd4",
-            "handlers": {},
             "visible": true
         },
-        "41mtp31lqjaa2qg7": {
-            "id": "41mtp31lqjaa2qg7",
-            "type": "custom_customtextinput",
+        "n1fbfjbp7pkk27mu": {
+            "id": "n1fbfjbp7pkk27mu",
+            "type": "custom_custommetric",
+            "parentId": "mbrlkh5ek5vo1ht6",
             "content": {
-                "label": "Text Input Label",
-                "customId": "Input CustomId"
+                "metricvalue": "+Pass"
             },
-            "isCodeManaged": false,
+            "handlers": {},
             "position": 1,
-            "parentId": "tvab4gq5ndxkkwd4",
-            "handlers": {},
             "visible": true
         },
-        "2qtswblrwgs6y6dh": {
-            "id": "2qtswblrwgs6y6dh",
-            "type": "custom_customnumberinput",
+        "z6ggkglad5b9567g": {
+            "id": "z6ggkglad5b9567g",
+            "type": "custom_custommetric",
+            "parentId": "mbrlkh5ek5vo1ht6",
             "content": {
-                "label": "Number Input Label",
-                "customId": "Input CustomId"
+                "metricvalue": "-Pass"
             },
-            "isCodeManaged": false,
+            "handlers": {},
             "position": 2,
-            "parentId": "tvab4gq5ndxkkwd4",
-            "handlers": {},
-            "visible": true
-        },
-        "gxov69bi5gk043n2": {
-            "id": "gxov69bi5gk043n2",
-            "type": "custom_custombutton",
-            "content": {
-                "text": "Button Text",
-                "customId": "button_custom_id",
-                "isDisabled": "no"
-            },
-            "isCodeManaged": false,
-            "position": 3,
-            "parentId": "tvab4gq5ndxkkwd4",
-            "handlers": {},
-            "visible": true
-        },
-        "wjs873qmdz43bod0": {
-            "id": "wjs873qmdz43bod0",
-            "type": "custom_custombutton",
-            "content": {
-                "text": "Button Text",
-                "customId": "button_custom_id",
-                "isDisabled": "no"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "7gfj4me330ufnj6s",
-            "handlers": {},
-            "visible": true
-        },
-        "mos57i4tl1vft2i2": {
-            "id": "mos57i4tl1vft2i2",
-            "type": "custom_custombutton",
-            "content": {
-                "text": "Button Text",
-                "customId": "butttttton",
-                "isDisabled": "no"
-            },
-            "isCodeManaged": false,
-            "position": 0,
-            "parentId": "wtprq4uudrd1pa0p",
-            "handlers": {},
-            "visible": true
-        },
-        "t2qr09oagsfpbk7b": {
-            "id": "t2qr09oagsfpbk7b",
-            "type": "metric",
-            "parentId": "tvab4gq5ndxkkwd4",
-            "content": {
-                "note": "+Pass"
-            },
-            "handlers": {},
-            "position": 5,
             "visible": true
         }
     }
