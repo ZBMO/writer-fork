@@ -2,22 +2,26 @@
 	<div class="CoreMetric" :style="rootStyle">
 		<div class="name">{{ fields.name.value }}</div>
 		<div class="icon">
-				<i class="ColorIcon"
-						v-if="sentiment != 'neutral'"
-						:class="displayIcon"
-						:style="{fontSize: `${fields.size.value}px`, color: fields.color.value}"
-					></i>
-			</div>
-			<div class="note">{{ noteWithoutPrefix }}</div>
+			<i
+				v-if="sentiment != 'neutral'"
+				class="ColorIcon"
+				:class="displayIcon"
+				:style="{
+					fontSize: `${fields.size.value}px`,
+					color: fields.color.value,
+				}"
+			></i>
+		</div>
+		<div class="note">{{ noteWithoutPrefix }}</div>
 	</div>
 </template>
 
 <script lang="ts">
 import { FieldCategory, FieldType } from "../writerTypes";
 import {
-cssClasses,
+	cssClasses,
 	primaryTextColor,
-	secondaryTextColor
+	secondaryTextColor,
 } from "../renderer/sharedStyleFields";
 const description =
 	"A component that prominently displays a metric value and associated information.";
@@ -105,11 +109,11 @@ const sentiment = computed(() => {
 });
 
 const displayIcon = computed(() => {
-	const sent = sentiment.value
-	if (sent == "positive") {
-		return ["ri-" + fields.positiveIcon.value + "-line"]
+	const sentimentValue = sentiment.value;
+	if (sentimentValue == "positive") {
+		return ["ri-" + fields.positiveIcon.value + "-line"];
 	} else {
-		return ["ri-" + fields.negativeIcon.value + "-line"]
+		return ["ri-" + fields.negativeIcon.value + "-line"];
 	}
 });
 
@@ -155,17 +159,17 @@ const rootStyle = computed(() => {
 	font-size: 0.9rem;
 	color: black;
 	grid-column-start: first;
-  	grid-column-end: second;
+	grid-column-end: second;
 }
 .icon {
 	grid-column-start: second;
-  	grid-column-end: third;
+	grid-column-end: third;
 }
 .note {
 	font-size: 0.9rem;
 	color: black;
 	filter: brightness(0.9);
 	grid-column-start: third;
-  	grid-column-end: end;
+	grid-column-end: end;
 }
 </style>
