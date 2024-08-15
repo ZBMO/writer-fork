@@ -57,7 +57,7 @@ export default {
 				name: "Placeholder",
 				type: FieldType.Text,
 			},
-            customId: {
+			customId: {
 				name: "CustomId",
 				init: "Input CustomId",
 				type: FieldType.Text,

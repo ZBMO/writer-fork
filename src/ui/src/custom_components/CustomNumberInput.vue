@@ -71,7 +71,7 @@ export default {
 				type: FieldType.Number,
 				default: null,
 			},
-            customId: {
+			customId: {
 				name: "CustomId",
 				init: "Input CustomId",
 				type: FieldType.Text,

@@ -2,11 +2,11 @@
 	<section class="CoreSection">
 		<h3 v-if="fields.title.value">{{ fields.title.value }}</h3>
 		<BaseContainer
-			v-on:click.capture="captureClick"
-			v-on:input.capture="captureInput"
-			v-on:change.capture="captureChange"
 			:content-h-align="fields.contentHAlign.value"
 			:content-padding="fields.contentPadding.value"
+			@click.capture="captureClick"
+			@input.capture="captureInput"
+			@change.capture="captureChange"
 		>
 			<slot></slot>
 		</BaseContainer>
@@ -33,8 +33,7 @@ import {
 const description =
 	"A container component that divides the layout into sections, with an optional title.";
 
-
-	export default {
+export default {
 	writer: {
 		name: "Section",
 		description,
@@ -77,109 +76,150 @@ const fields = inject(injectionKeys.evaluatedFields);
 const wf = inject(injectionKeys.core);
 const instancePath = inject(injectionKeys.instancePath);
 
-function captureClick(event: Event) {
-	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]"
+function getParentTabId(target: HTMLElement): string {
+	const parentTabElement: HTMLElement = (target as HTMLElement).closest(
+		".CoreTab",
 	);
+	if (parentTabElement == null) return null;
 
-	// fail early and permit normal behavior for tabs
-	if (clickIsOnATab(event)) return
-	
-    event.stopPropagation()
-
-	if (clickIsNotOnAButton(targetElement)) { return }
-	// if (buttonsDisabled) { return }
-
-	const customId = getComponentCustomId(targetElement)
-	console.log('customId: ' + customId)
-	const customEvent = new CustomEvent("click", {
-		detail: {
-			payload: {
-				id: customId,
-			},
-		},
-	});
-	wf.forwardEvent(customEvent, instancePath, true)
+	var parentTabComponent = wf.getComponentById(
+		parentTabElement.dataset.writerId,
+	);
+	var parentTabCustomId = parentTabComponent.content["customId"];
+	return parentTabCustomId;
 }
 
 function getComponentCustomId(targetElement: HTMLElement): string {
-	var component = wf.getComponentById(targetElement.dataset.writerId)
-	var customId = component.content["customId"]
-	var defaultId = targetElement.dataset.writerId
+	var component = wf.getComponentById(targetElement.dataset.writerId);
+	var customId = component.content["customId"];
+	var defaultId = targetElement.dataset.writerId;
 
-	return (customId != "") ? customId : defaultId
+	return customId != "" ? customId : defaultId;
+}
+
+function getCustomIdentifiers(event: Event): string {
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]",
+	);
+
+	var targetComponentId = getComponentCustomId(targetElement);
+	var parentComponentId = getParentTabId(targetElement);
+
+	if (parentComponentId != null) {
+		return parentComponentId + "_" + targetComponentId;
+	} else {
+		return targetComponentId;
+	}
+}
+
+function isDisabled(event) {
+	const target: HTMLElement = event.target as HTMLElement;
+	const isDisabled = target.attributes["aria-disabled"].value;
+	return isDisabled == "true";
+}
+
+function captureClick(event: Event) {
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]",
+	);
+
+	// fail early and permit normal behavior for tabs
+	if (clickIsOnATab(event)) return;
+	event.stopPropagation();
+
+	if (clickIsNotOnAButton(targetElement)) {
+		return;
+	}
+	if (isDisabled(event)) {
+		return;
+	}
+
+	const compositeId = getCustomIdentifiers(event);
+	const customEvent = new CustomEvent("click", {
+		detail: {
+			payload: {
+				id: compositeId,
+			},
+		},
+	});
+	wf.forwardEvent(customEvent, instancePath, true);
 }
 
 function clickIsOnATab(event: Event): boolean {
-	const targetElement: HTMLElement = event.target as HTMLElement
-	const closesetWriterElement: HTMLElement = targetElement.closest("[data-writer-id]")
+	const targetElement: HTMLElement = event.target as HTMLElement;
+	const closesetWriterElement: HTMLElement =
+		targetElement.closest("[data-writer-id]");
 
-	let component = wf.getComponentById(closesetWriterElement.dataset.writerId)
+	let component = wf.getComponentById(closesetWriterElement.dataset.writerId);
 
-	const writerComponentIsATab = component["type"].includes("tab")
-	const targetElementIsAButton = targetElement.nodeName == "BUTTON"
+	const writerComponentIsATab = component["type"].includes("tab");
+	const targetElementIsAButton = targetElement.nodeName == "BUTTON";
 
 	//user clicked the button part of a tab
-	return writerComponentIsATab && targetElementIsAButton
+	return writerComponentIsATab && targetElementIsAButton;
 }
-
 
 function clickIsNotOnAButton(targetElement: HTMLElement): boolean {
-    return "BUTTON" != targetElement.nodeName	
+	let res = "BUTTON" != targetElement.nodeName;
+	return res;
 }
 
-function elementIsNotThisType(event: Event, expectedTypes: Array<String>): boolean {
-    const thisElementType = (<HTMLInputElement>event.target).nodeName
-	console.log("this element type: " + thisElementType)	
-    return !expectedTypes.includes(thisElementType)
+function elementIsNotThisType(
+	event: Event,
+	expectedTypes: Array<string>,
+): boolean {
+	const thisElementType = (<HTMLInputElement>event.target).nodeName;
+	return !expectedTypes.includes(thisElementType);
 }
 
 function captureInput(event: Event) {
-	const targetWriterElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]"
-	);
+	const targetWriterElement: HTMLElement = (
+		event.target as HTMLElement
+	).closest("[data-writer-id]");
 
-    event.stopPropagation()
-    if (elementIsNotThisType(event, ["INPUT"])) { return }
+	event.stopPropagation();
+	if (elementIsNotThisType(event, ["INPUT"])) {
+		return;
+	}
 
-	const componentId = getComponentCustomId(targetWriterElement)
-	const inputValue = (<HTMLInputElement>event.target).value
+	const componentId = getComponentCustomId(targetWriterElement);
+	const inputValue = (<HTMLInputElement>event.target).value;
 	const customEvent = new CustomEvent("input", {
 		detail: {
 			payload: {
 				id: componentId,
-				value: inputValue
+				value: inputValue,
 			},
 		},
 	});
 
-	wf.forwardEvent(customEvent, instancePath, true)
+	wf.forwardEvent(customEvent, instancePath, true);
 }
 
 function captureChange(event: Event) {
-	console.log('captureChange event')
-	event.stopPropagation()
-    if (elementIsNotThisType(event, ["SELECT", "INPUT"])) { return }
+	event.stopPropagation();
+	if (elementIsNotThisType(event, ["SELECT", "INPUT"])) {
+		return;
+	}
 
 	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]"
+		"[data-writer-id]",
 	);
 
-	const componentId = getComponentCustomId(targetElement)
-	const inputValue = (<HTMLInputElement>event.target).value
+	const componentId = getComponentCustomId(targetElement);
+	const inputValue = (<HTMLInputElement>event.target).value;
 	const customEvent = new CustomEvent("change", {
 		detail: {
 			payload: {
 				id: componentId,
-				value: inputValue
+				value: inputValue,
 			},
 		},
 	});
 
 	// toggleDisableInputs(componentId, inputValue)
-	wf.forwardEvent(customEvent, instancePath, true)
+	wf.forwardEvent(customEvent, instancePath, true);
 }
-
 </script>
 
 <style scoped>

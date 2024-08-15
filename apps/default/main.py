@@ -13,6 +13,11 @@ def _update_message(state):
     message = ("+Even" if is_even else "-Odd")
     state["message"] = message
 
+
+def sectionClick(state, payload):
+    print("state: ", state)
+    print("payload: ", payload)
+
 def decrement(state):
     state["counter"] -= 1
     _update_message(state)

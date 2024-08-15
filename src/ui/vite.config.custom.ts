@@ -40,6 +40,11 @@ export default defineConfig({
 		outDir: "custom_components_dist",
 		emptyOutDir: true,
 	},
+	optimizeDeps:{
+		esbuildOptions: {
+			target: "es2022",
+		}
+	},
 	resolve: {
 		alias: {
 			"@": path.resolve("src"),
