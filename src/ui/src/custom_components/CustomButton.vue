@@ -56,7 +56,7 @@ export default {
 				init: "Button Text",
 				type: FieldType.Text,
 			},
-            customId: {
+			customId: {
 				name: "CustomId",
 				init: "Button CustomId",
 				type: FieldType.Text,
