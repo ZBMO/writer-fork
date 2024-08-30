@@ -14,8 +14,6 @@ import CustomMetric from "./CustomMetric.vue"
 // Export an object with the ids and the templates as default
 
 export default {
-	bubblemessageadvanced: BubbleMessageAdvanced,
-	bubblemessage: BubbleMessage,
 	custombutton: CustomButton,
 	customsection: CustomSection,
 	customdropdown: CustomDropDown,

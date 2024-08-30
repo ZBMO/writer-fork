@@ -24,96 +24,378 @@
             "handlers": {},
             "visible": true
         },
-        "78xr4sqqxffgfnez": {
-            "id": "78xr4sqqxffgfnez",
-            "type": "custom_custommetric",
+        "9whwtfc1wnw75cqp": {
+            "id": "9whwtfc1wnw75cqp",
+            "type": "custom_customsection",
             "content": {
-                "note": "+Pass",
-                "metricvalue": "+500",
-                "size": "50",
-                "positiveIcon": "check",
-                "negativeIcon": "close"
+                "title": "dual driver"
             },
             "isCodeManaged": false,
             "position": 0,
             "parentId": "zvlc7r45bs2zqeoc",
-            "handlers": {},
-            "visible": true
-        },
-        "9whwtfc1wnw75cqp": {
-            "id": "9whwtfc1wnw75cqp",
-            "type": "custom_customsection",
-            "parentId": "zvlc7r45bs2zqeoc",
-            "content": {
-                "title": "Custom Section Title"
+            "handlers": {
+                "change": "sectionChange"
             },
-            "handlers": {},
-            "position": 1,
             "visible": true
         },
         "ynjng96jymhhg438": {
             "id": "ynjng96jymhhg438",
             "type": "columns",
-            "parentId": "9whwtfc1wnw75cqp",
             "content": {},
+            "isCodeManaged": false,
+            "position": 1,
+            "parentId": "9whwtfc1wnw75cqp",
             "handlers": {},
-            "position": 0,
             "visible": true
         },
         "mbrlkh5ek5vo1ht6": {
             "id": "mbrlkh5ek5vo1ht6",
             "type": "column",
-            "parentId": "ynjng96jymhhg438",
             "content": {
                 "width": "1"
             },
-            "handlers": {},
+            "isCodeManaged": false,
             "position": 0,
+            "parentId": "ynjng96jymhhg438",
+            "handlers": {},
             "visible": true
         },
-        "vwlbj4p88119zhue": {
-            "id": "vwlbj4p88119zhue",
+        "nud1rnife9uiyijt": {
+            "id": "nud1rnife9uiyijt",
+            "type": "custom_customtabs",
+            "content": {},
+            "isCodeManaged": false,
+            "position": 0,
+            "parentId": "mbrlkh5ek5vo1ht6",
+            "handlers": {},
+            "visible": true
+        },
+        "3enem5q8n6puuuiy": {
+            "id": "3enem5q8n6puuuiy",
+            "type": "custom_customtab",
+            "content": {
+                "name": "Laser 1",
+                "customId": "laser_1"
+            },
+            "isCodeManaged": false,
+            "position": 0,
+            "parentId": "nud1rnife9uiyijt",
+            "handlers": {},
+            "visible": true
+        },
+        "ir63khfqsru34p0o": {
+            "id": "ir63khfqsru34p0o",
+            "type": "custom_customtab",
+            "content": {
+                "name": "laser 2",
+                "customId": "laser_2"
+            },
+            "isCodeManaged": false,
+            "position": 1,
+            "parentId": "nud1rnife9uiyijt",
+            "handlers": {},
+            "visible": true
+        },
+        "j2ebsz8aejx9et3j": {
+            "id": "j2ebsz8aejx9et3j",
+            "type": "custom_customdropdown",
+            "content": {
+                "label": "select driver",
+                "options": "{\n  \"A\": \"Driver A\",\n  \"B\": \"Driver B\"\n}"
+            },
+            "isCodeManaged": false,
+            "position": 0,
+            "parentId": "9whwtfc1wnw75cqp",
+            "handlers": {}
+        },
+        "7xftqapfu9ows1ux": {
+            "id": "7xftqapfu9ows1ux",
+            "type": "columns",
+            "content": {},
+            "isCodeManaged": false,
+            "position": 0,
+            "parentId": "3enem5q8n6puuuiy",
+            "handlers": {},
+            "visible": true
+        },
+        "u2i5br82onqxoi13": {
+            "id": "u2i5br82onqxoi13",
             "type": "column",
-            "parentId": "ynjng96jymhhg438",
             "content": {
                 "width": "1"
             },
-            "handlers": {},
-            "position": 1,
-            "visible": true
-        },
-        "j2y4kdd2snj97ybx": {
-            "id": "j2y4kdd2snj97ybx",
-            "type": "custom_custommetric",
-            "parentId": "mbrlkh5ek5vo1ht6",
-            "content": {
-                "metricvalue": "+Pass"
-            },
-            "handlers": {},
+            "isCodeManaged": false,
             "position": 0,
+            "parentId": "7xftqapfu9ows1ux",
+            "handlers": {},
             "visible": true
         },
-        "n1fbfjbp7pkk27mu": {
-            "id": "n1fbfjbp7pkk27mu",
+        "wghopv07regg86xj": {
+            "id": "wghopv07regg86xj",
             "type": "custom_custommetric",
-            "parentId": "mbrlkh5ek5vo1ht6",
             "content": {
-                "metricvalue": "+Pass"
+                "name": " pump 1",
+                "metricvalue": "@{laser_1.pump1}"
             },
+            "isCodeManaged": false,
+            "position": 0,
+            "parentId": "u2i5br82onqxoi13",
             "handlers": {},
+            "visible": true
+        },
+        "ho55tqs7mk2tkppb": {
+            "id": "ho55tqs7mk2tkppb",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 2",
+                "metricvalue": "@{laser_1.pump2}"
+            },
+            "isCodeManaged": false,
             "position": 1,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
             "visible": true
         },
-        "z6ggkglad5b9567g": {
-            "id": "z6ggkglad5b9567g",
+        "oz9l7bfgvhwi5eh2": {
+            "id": "oz9l7bfgvhwi5eh2",
             "type": "custom_custommetric",
-            "parentId": "mbrlkh5ek5vo1ht6",
             "content": {
-                "metricvalue": "-Pass"
+                "name": "pump 3",
+                "metricvalue": "@{laser_1.pump3}"
             },
-            "handlers": {},
+            "isCodeManaged": false,
             "position": 2,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
             "visible": true
+        },
+        "u1so4tjhmlmbc7pc": {
+            "id": "u1so4tjhmlmbc7pc",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 4",
+                "metricvalue": "@{laser_1.pump4}"
+            },
+            "isCodeManaged": false,
+            "position": 3,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
+            "visible": true
+        },
+        "vapivuycha6vmlou": {
+            "id": "vapivuycha6vmlou",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 5",
+                "metricvalue": "@{laser_1.pump5}"
+            },
+            "isCodeManaged": false,
+            "position": 4,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
+            "visible": true
+        },
+        "nrg7s88ldrjizr9b": {
+            "id": "nrg7s88ldrjizr9b",
+            "type": "column",
+            "content": {
+                "width": "1"
+            },
+            "isCodeManaged": false,
+            "position": 1,
+            "parentId": "7xftqapfu9ows1ux",
+            "handlers": {},
+            "visible": true
+        },
+        "q845rp0auzut48cu": {
+            "id": "q845rp0auzut48cu",
+            "type": "custom_customtextinput",
+            "content": {
+                "label": "power",
+                "customId": "power"
+            },
+            "isCodeManaged": false,
+            "position": 0,
+            "parentId": "nrg7s88ldrjizr9b",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-change",
+                "stateRef": "laser_1.power"
+            }
+        },
+        "shrl519k3kqc68tt": {
+            "id": "shrl519k3kqc68tt",
+            "type": "custom_customtextinput",
+            "content": {
+                "label": "freq",
+                "customId": "freq"
+            },
+            "isCodeManaged": false,
+            "position": 1,
+            "parentId": "nrg7s88ldrjizr9b",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-change",
+                "stateRef": "laser_1.freq"
+            }
+        },
+        "jiyhm8zh2evrer2s": {
+            "id": "jiyhm8zh2evrer2s",
+            "type": "custom_customnumberinput",
+            "content": {
+                "label": "amp",
+                "customId": "amp"
+            },
+            "isCodeManaged": false,
+            "position": 2,
+            "parentId": "nrg7s88ldrjizr9b",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-number-change",
+                "stateRef": "laser_1.amp"
+            }
+        },
+        "yp51ri5o7ez5cs4j": {
+            "id": "yp51ri5o7ez5cs4j",
+            "type": "columns",
+            "content": {},
+            "position": 0,
+            "parentId": "ir63khfqsru34p0o",
+            "handlers": {},
+            "visible": true
+        },
+        "626epjcd9jigi8vu": {
+            "id": "626epjcd9jigi8vu",
+            "type": "column",
+            "content": {
+                "width": "1"
+            },
+            "position": 0,
+            "parentId": "yp51ri5o7ez5cs4j",
+            "handlers": {},
+            "visible": true
+        },
+        "g9wkcn26ey3q6e7c": {
+            "id": "g9wkcn26ey3q6e7c",
+            "type": "custom_custommetric",
+            "content": {
+                "name": " pump 1",
+                "metricvalue": "@{laser_2.pump1}"
+            },
+            "position": 0,
+            "parentId": "626epjcd9jigi8vu",
+            "handlers": {},
+            "visible": true
+        },
+        "thbp2bf6xsnvd9gu": {
+            "id": "thbp2bf6xsnvd9gu",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 2",
+                "metricvalue": "@{laser_2.pump2}"
+            },
+            "position": 1,
+            "parentId": "626epjcd9jigi8vu",
+            "handlers": {},
+            "visible": true
+        },
+        "edz4cri1qh89gvwv": {
+            "id": "edz4cri1qh89gvwv",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 3",
+                "metricvalue": "@{laser_2.pump3}"
+            },
+            "position": 2,
+            "parentId": "626epjcd9jigi8vu",
+            "handlers": {},
+            "visible": true
+        },
+        "5acm5eef6qmoc91f": {
+            "id": "5acm5eef6qmoc91f",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 4",
+                "metricvalue": "@{laser_2.pump4}"
+            },
+            "position": 3,
+            "parentId": "626epjcd9jigi8vu",
+            "handlers": {},
+            "visible": true
+        },
+        "pvyl2q0vi5cbrzcd": {
+            "id": "pvyl2q0vi5cbrzcd",
+            "type": "custom_custommetric",
+            "content": {
+                "name": "pump 5",
+                "metricvalue": "@{laser_2.pump5}"
+            },
+            "position": 4,
+            "parentId": "626epjcd9jigi8vu",
+            "handlers": {},
+            "visible": true
+        },
+        "h279zmo8gl5uvpb9": {
+            "id": "h279zmo8gl5uvpb9",
+            "type": "column",
+            "content": {
+                "width": "1"
+            },
+            "position": 1,
+            "parentId": "yp51ri5o7ez5cs4j",
+            "handlers": {},
+            "visible": true
+        },
+        "8l9ni31jl8guz39r": {
+            "id": "8l9ni31jl8guz39r",
+            "type": "custom_customtextinput",
+            "content": {
+                "label": "power",
+                "customId": "power"
+            },
+            "position": 0,
+            "parentId": "h279zmo8gl5uvpb9",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-change",
+                "stateRef": "laser_2.power"
+            }
+        },
+        "1zljfm0shdx1bw5u": {
+            "id": "1zljfm0shdx1bw5u",
+            "type": "custom_customtextinput",
+            "content": {
+                "label": "freq",
+                "customId": "freq"
+            },
+            "position": 1,
+            "parentId": "h279zmo8gl5uvpb9",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-change",
+                "stateRef": "laser_2.freq"
+            }
+        },
+        "zgrn7s60ciefwgbm": {
+            "id": "zgrn7s60ciefwgbm",
+            "type": "custom_customnumberinput",
+            "content": {
+                "label": "amp",
+                "customId": "amp"
+            },
+            "position": 2,
+            "parentId": "h279zmo8gl5uvpb9",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-number-change",
+                "stateRef": "laser_2.amp"
+            }
         }
     }
 }
