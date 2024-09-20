@@ -97,11 +97,7 @@ function getComponentCustomId(targetElement: HTMLElement): string {
 	return customId != "" ? customId : defaultId;
 }
 
-function getCustomIdentifiers(event: Event): string {
-	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]",
-	);
-
+function getCustomIdentifiers(targetElement: HTMLElement): string {
 	var targetComponentId = getComponentCustomId(targetElement);
 	var parentComponentId = getParentTabId(targetElement);
 
@@ -118,32 +114,7 @@ function isDisabled(event) {
 	return isDisabled == "true";
 }
 
-function captureClick(event: Event) {
-	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]",
-	);
 
-	// fail early and permit normal behavior for tabs
-	if (clickIsOnATab(event)) return;
-	event.stopPropagation();
-
-	if (clickIsNotOnAButton(targetElement)) {
-		return;
-	}
-	if (isDisabled(event)) {
-		return;
-	}
-
-	const compositeId = getCustomIdentifiers(event);
-	const customEvent = new CustomEvent("click", {
-		detail: {
-			payload: {
-				id: compositeId,
-			},
-		},
-	});
-	wf.forwardEvent(customEvent, instancePath, true);
-}
 
 function clickIsOnATab(event: Event): boolean {
 	const targetElement: HTMLElement = event.target as HTMLElement;
@@ -172,17 +143,44 @@ function elementIsNotThisType(
 	return !expectedTypes.includes(thisElementType);
 }
 
+function captureClick(event: Event) {
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]",
+	);
+
+	// fail early and permit normal behavior for tabs
+	if (clickIsOnATab(event)) return;
+	event.stopPropagation();
+
+	if (clickIsNotOnAButton(targetElement)) {
+		return;
+	}
+	if (isDisabled(event)) {
+		return;
+	}
+
+	const compositeId = getCustomIdentifiers(targetElement);
+	const customEvent = new CustomEvent("click", {
+		detail: {
+			payload: {
+				id: compositeId,
+			},
+		},
+	});
+	wf.forwardEvent(customEvent, instancePath, true);
+}
+
 function captureInput(event: Event) {
-	const targetWriterElement: HTMLElement = (
-		event.target as HTMLElement
-	).closest("[data-writer-id]");
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]",
+	);
 
 	event.stopPropagation();
 	if (elementIsNotThisType(event, ["INPUT"])) {
 		return;
 	}
 
-	const componentId = getComponentCustomId(targetWriterElement);
+	const componentId = getCustomIdentifiers(targetElement);
 	const inputValue = (<HTMLInputElement>event.target).value;
 	const customEvent = new CustomEvent("input", {
 		detail: {
@@ -197,16 +195,16 @@ function captureInput(event: Event) {
 }
 
 function captureChange(event: Event) {
+	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
+		"[data-writer-id]",
+	);
+
 	event.stopPropagation();
 	if (elementIsNotThisType(event, ["SELECT", "INPUT"])) {
 		return;
 	}
 
-	const targetElement: HTMLElement = (event.target as HTMLElement).closest(
-		"[data-writer-id]",
-	);
-
-	const componentId = getComponentCustomId(targetElement);
+	const componentId = getCustomIdentifiers(targetElement);
 	const inputValue = (<HTMLInputElement>event.target).value;
 	const customEvent = new CustomEvent("change", {
 		detail: {

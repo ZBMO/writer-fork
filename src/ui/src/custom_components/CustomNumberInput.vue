@@ -73,7 +73,7 @@ export default {
 			},
 			customId: {
 				name: "CustomId",
-				init: "Input CustomId",
+				init: "Number Input CustomId",
 				type: FieldType.Text,
 			},
 			valueStep: {
