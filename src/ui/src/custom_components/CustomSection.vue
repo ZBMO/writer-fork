@@ -190,11 +190,6 @@ function captureInput(event: Event) {
 
 	const {computedId, targetComponentId, parentTabId} = getCustomIdentifiers(targetElement);
 	const inputValue = (<HTMLInputElement>event.target).value;
-
-		console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-		console.log("computedId: " + computedId)
-		console.log("targetComponentId: " + targetComponentId)
-
 	const customEvent = new CustomEvent("input", {
 		detail: {
 			payload: {
