@@ -74,8 +74,24 @@ def sectionChange(state, payload):
     
 
 def sectionClick(state, payload):
-    print("state: ", state)
+    print("sectionClick")
     print("payload: ", payload)
+
+def handleInput(state, payload):
+    print("handleInput")
+    print("payload: ", payload)
+    if (payload["control"] == "txtInput"):
+        state["txtInput"] = payload["value"]
+    if (payload["control"] == "numInput"):
+        state["numInput"] = payload["value"]
+
+def handleChange(state, payload):
+    print("handleChange")
+    print("payload: ", payload)
+    if (payload["control"] == "txtInput"):
+        state["txtInput"] = payload["value"]
+    if (payload["control"] == "numInput"):
+        state["numInput"] = payload["value"]
 
 def decrement(state):
     state["counter"] -= 1
@@ -100,6 +116,8 @@ initial_state = wf.init_state({
     "message": None,
     "counter": 26,
     "selectedDriver": "",
+    "txtInput": "",
+    "numInput": 0,
     "laser_1": {
         "pump1": "+Pass 11",
         "pump2": "+Pass 12",

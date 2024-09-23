@@ -34,7 +34,8 @@
             "position": 0,
             "parentId": "zvlc7r45bs2zqeoc",
             "handlers": {
-                "change": "sectionChange"
+                "change": "handleChange",
+                "click": "sectionClick"
             },
             "visible": true
         },
@@ -262,6 +263,7 @@
             "id": "yp51ri5o7ez5cs4j",
             "type": "columns",
             "content": {},
+            "isCodeManaged": false,
             "position": 0,
             "parentId": "ir63khfqsru34p0o",
             "handlers": {},
@@ -273,6 +275,7 @@
             "content": {
                 "width": "1"
             },
+            "isCodeManaged": false,
             "position": 0,
             "parentId": "yp51ri5o7ez5cs4j",
             "handlers": {},
@@ -285,6 +288,7 @@
                 "name": " pump 1",
                 "metricvalue": "@{laser_2.pump1}"
             },
+            "isCodeManaged": false,
             "position": 0,
             "parentId": "626epjcd9jigi8vu",
             "handlers": {},
@@ -297,6 +301,7 @@
                 "name": "pump 2",
                 "metricvalue": "@{laser_2.pump2}"
             },
+            "isCodeManaged": false,
             "position": 1,
             "parentId": "626epjcd9jigi8vu",
             "handlers": {},
@@ -309,6 +314,7 @@
                 "name": "pump 3",
                 "metricvalue": "@{laser_2.pump3}"
             },
+            "isCodeManaged": false,
             "position": 2,
             "parentId": "626epjcd9jigi8vu",
             "handlers": {},
@@ -321,6 +327,7 @@
                 "name": "pump 4",
                 "metricvalue": "@{laser_2.pump4}"
             },
+            "isCodeManaged": false,
             "position": 3,
             "parentId": "626epjcd9jigi8vu",
             "handlers": {},
@@ -333,6 +340,7 @@
                 "name": "pump 5",
                 "metricvalue": "@{laser_2.pump5}"
             },
+            "isCodeManaged": false,
             "position": 4,
             "parentId": "626epjcd9jigi8vu",
             "handlers": {},
@@ -344,6 +352,7 @@
             "content": {
                 "width": "1"
             },
+            "isCodeManaged": false,
             "position": 1,
             "parentId": "yp51ri5o7ez5cs4j",
             "handlers": {},
@@ -356,6 +365,7 @@
                 "label": "power",
                 "customId": "power"
             },
+            "isCodeManaged": false,
             "position": 0,
             "parentId": "h279zmo8gl5uvpb9",
             "handlers": {},
@@ -372,6 +382,7 @@
                 "label": "freq",
                 "customId": "freq"
             },
+            "isCodeManaged": false,
             "position": 1,
             "parentId": "h279zmo8gl5uvpb9",
             "handlers": {},
@@ -388,6 +399,7 @@
                 "label": "amp",
                 "customId": "amp"
             },
+            "isCodeManaged": false,
             "position": 2,
             "parentId": "h279zmo8gl5uvpb9",
             "handlers": {},
@@ -396,6 +408,81 @@
                 "eventType": "wf-number-change",
                 "stateRef": "laser_2.amp"
             }
+        },
+        "enqpecmpdigjmtsb": {
+            "id": "enqpecmpdigjmtsb",
+            "type": "custom_custombutton",
+            "content": {
+                "text": "Button Text",
+                "customId": "Button CustomId"
+            },
+            "isCodeManaged": false,
+            "position": 5,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
+            "visible": true
+        },
+        "gt2aq76hefovy7da": {
+            "id": "gt2aq76hefovy7da",
+            "type": "custom_customtextinput",
+            "content": {
+                "label": "Text Input Label",
+                "customId": "txtInput"
+            },
+            "isCodeManaged": false,
+            "position": 6,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
+            "visible": true,
+            "binding": {
+                "eventType": "wf-change",
+                "stateRef": "txtInput"
+            }
+        },
+        "h0dd2m494b8tarhj": {
+            "id": "h0dd2m494b8tarhj",
+            "type": "custom_customdropdown",
+            "content": {
+                "label": "Input Label",
+                "customId": "asdf"
+            },
+            "isCodeManaged": false,
+            "position": 7,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {},
+            "visible": true
+        },
+        "aorh12q0k7vkwo46": {
+            "id": "aorh12q0k7vkwo46",
+            "type": "custom_customnumberinput",
+            "content": {
+                "label": "Number Input Label",
+                "customId": "numInput"
+            },
+            "isCodeManaged": false,
+            "position": 8,
+            "parentId": "u2i5br82onqxoi13",
+            "handlers": {
+                "input": "handleInput"
+            },
+            "visible": true,
+            "binding": {
+                "eventType": "wf-number-change",
+                "stateRef": "numInput"
+            }
+        },
+        "0zvt1c7uiy9sw8f8": {
+            "id": "0zvt1c7uiy9sw8f8",
+            "type": "custom_customdropdown",
+            "content": {
+                "label": "Input Label",
+                "customId": "Dropdown CustomId"
+            },
+            "isCodeManaged": false,
+            "position": 5,
+            "parentId": "626epjcd9jigi8vu",
+            "handlers": {},
+            "visible": true
         }
     }
 }

@@ -97,15 +97,21 @@ function getComponentCustomId(targetElement: HTMLElement): string {
 	return customId != "" ? customId : defaultId;
 }
 
-function getCustomIdentifiers(targetElement: HTMLElement): string {
+function getCustomIdentifiers(targetElement: HTMLElement): {
+  computedId: string;
+  targetComponentId: string;
+  parentTabId: string | null;
+} {
 	var targetComponentId = getComponentCustomId(targetElement);
-	var parentComponentId = getParentTabId(targetElement);
+	var parentTabId = getParentTabId(targetElement);
 
-	if (parentComponentId != null) {
-		return parentComponentId + "_" + targetComponentId;
+	if (parentTabId != null) {
+		var computedId = parentTabId + "_" + targetComponentId;
 	} else {
-		return targetComponentId;
+		var computedId = targetComponentId;
 	}
+
+	return {computedId, targetComponentId, parentTabId}
 }
 
 function isDisabled(event) {
@@ -159,11 +165,13 @@ function captureClick(event: Event) {
 		return;
 	}
 
-	const compositeId = getCustomIdentifiers(targetElement);
+	const {computedId, targetComponentId, parentTabId} = getCustomIdentifiers(targetElement);
 	const customEvent = new CustomEvent("click", {
 		detail: {
 			payload: {
-				id: compositeId,
+				id: computedId,
+				tab: parentTabId,
+				control: targetComponentId,
 			},
 		},
 	});
@@ -180,12 +188,19 @@ function captureInput(event: Event) {
 		return;
 	}
 
-	const componentId = getCustomIdentifiers(targetElement);
+	const {computedId, targetComponentId, parentTabId} = getCustomIdentifiers(targetElement);
 	const inputValue = (<HTMLInputElement>event.target).value;
+
+		console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+		console.log("computedId: " + computedId)
+		console.log("targetComponentId: " + targetComponentId)
+
 	const customEvent = new CustomEvent("input", {
 		detail: {
 			payload: {
-				id: componentId,
+				id: computedId,
+				tab: parentTabId,
+				control: targetComponentId,
 				value: inputValue,
 			},
 		},
@@ -204,12 +219,14 @@ function captureChange(event: Event) {
 		return;
 	}
 
-	const componentId = getCustomIdentifiers(targetElement);
+	const {computedId, targetComponentId, parentTabId} = getCustomIdentifiers(targetElement);
 	const inputValue = (<HTMLInputElement>event.target).value;
 	const customEvent = new CustomEvent("change", {
 		detail: {
 			payload: {
-				id: componentId,
+				id: computedId,
+				tab: parentTabId,
+				control: targetComponentId,
 				value: inputValue,
 			},
 		},
